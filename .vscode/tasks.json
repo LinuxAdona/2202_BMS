@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run XAMPP Server",
+            "type": "shell",
+            "command": "C:/xampp/php/php.exe",
+            "args": [
+                "-S",
+                "localhost:8000",
+                "-t",
+                "${workspaceFolder}"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
