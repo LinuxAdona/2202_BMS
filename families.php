@@ -71,6 +71,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Gender</th>
                         <th>Address</th>
@@ -85,9 +86,11 @@
                     $result = $conn->query($sql);
 
                     $gender = "";
+                    $counter = 0;
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
+                            $counter++;
                             if ($row["gender"] == "Male") {
                                 $gender = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAhJJREFUSEvllT9oU1EUxn8nTbUiLYJgLVEKDuKgUNCpKAYXQUwKgps4iK0odFA6iH/6XtOAQ0EXBS10EicH8QkWuohFsOKi1iWOCmItCELAf4mfve2LJGk0eTWdvHCXxznf757vnnuescrLVlmf/xSQzugSYrSWvYFnFa6s2KJURkMmxqohTQM44ZSvK2acL4c0DXA4q0SsyDSwremAKvGcwZRg0IH+uYJDWXW3Fnks6AZyxNkfXLS5Pl9jMobqApK+2jpinEScDcv/LMjFjDvAI4lJIGHw+nsrByYv2HzJorSv0cC3y+WWVXRRX1ZbVWQK2FHnhc+uFcm7vn2qNwl+A5K+4u3GjMFu4P3CHpB45gQWPO7FGAc6gZ8touuebx/riYe5S2GpjM6YuAHMFUTPQ98+lAsc8bWlYMwCGzAGg2G7HgmQHtErYBdwLPDM+b1spUfUD4uVPAk82xcV8AVoK4iu6tOXhMI7egvMB55tigrIA+sRicA3dwfLVmjTOyAfeNYeFfAc2CM4/sCz2zUtyugEYsLg6X3PeiMBUhkNmLjlym8RO6u7JDz9C2Dj3w5RDa1o0w7DVdHj2tRE/xqY+QoxYK8ZN8M2nQ6GSWKmSBW4YDcG4ksPbfsfkl8S56AbDY2IV7yDUsLRq1r3Lc9pxDk3EsLvbzCube5kYvyU/WhUvCYgSnIjsSv+ozUi7mJ+AYL2uhnf1aakAAAAAElFTkSuQmCC"/>';
                             } else {
@@ -95,7 +98,8 @@
                             }
 
                             echo "<tr>
-                                    <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
+                                    <td>" . $counter . "</td>
+                                    <td>" .  $row['first_name'] . " " . $row['last_name'] . "</td>
                                     <td>
                                     <div class='gender'>"
                                 . $gender . $row['gender'] .

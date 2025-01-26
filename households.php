@@ -68,30 +68,33 @@
             <table>
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Family</th>
                         <th>Head</th>
                         <th>House Number</th>
                         <th>Street</th>
-                        <th>Barangay</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT f.family_name, a.house_number, r.first_name, r.last_name, a.street, b.barangay_name
+                    $sql = "SELECT f.family_name, a.house_number, r.first_name, r.last_name, a.street
                             FROM family f
                             JOIN address a ON a.address_id = f.address_id
-                            JOIN resident r ON r.resident_id = f.family_head_id
-                            JOIN barangay b ON b.barangay_id = a.barangay_id";
+                            JOIN resident r ON r.resident_id = f.family_head_id";
                     $result = $conn->query($sql);
+
+                    $counter = 0;
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
+                            $counter++;
+
                             echo "<tr>
+                                    <td>" . $counter . "</td>
                                     <td>" . $row['family_name'] . "</td>
                                     <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
                                     <td>" . $row['house_number'] . "</td>
                                     <td>" . $row['street'] . "</td>
-                                    <td>" . $row['barangay_name'] . "</td>
                                   </tr>";
                         }
                     } else {
