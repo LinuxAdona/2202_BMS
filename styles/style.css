@@ -233,6 +233,18 @@ footer {
     font-size: 12px;
     display: flex;
     justify-content: space-between;
+    background: linear-gradient(to top, #ffaaaa, #f4f4f4, #f4f4f4);
+    align-items: center;
+}
+
+.bsu-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bsu-logo img {
+    height: 30px;
 }
 
 h3 {
@@ -243,6 +255,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    border: 1px solid #b8b8b8;
 }
 
 table, th, td {
@@ -253,8 +266,20 @@ th, td {
     padding: 8px;
     text-align: left;
     background-color: #fff;
+    border: 1px solid #b8b8b8;
 }
 
 th {
     background-color: #ffffff;
+}
+
+.gender {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.actions {
+    display: flex;
+    gap: 5px;
 }

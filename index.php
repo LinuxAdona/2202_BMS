@@ -92,7 +92,10 @@
         </div>
 
         <footer>
-            <p>Batangas State University - ARASOF</p>
+            <div class="bsu-logo">
+                <img src="imgs/Batangas_State_Logo.png">
+                <p>Batangas State University - ARASOF</p>
+            </div>
             <p>Created by Linux Adona from BSIT-2202</p>
         </footer>
     </div>
