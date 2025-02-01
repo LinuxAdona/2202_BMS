@@ -27,10 +27,10 @@
                 <div class="seperator">MENU</div>
                 <div class="menu">
                     <li>
-                        <a href="families.php">Families</a>
+                        <a href="residents.php">Residents</a>
                     </li>
                     <li>
-                        <a href="households.php">Households</a>
+                        <a href="households.php">Families</a>
                     </li>
 
                     <li>
@@ -58,7 +58,7 @@
         </header>
 
         <div class="stats">
-            <a href="families.php" class="cards">
+            <a href="residents.php" class="cards">
                 <img src="imgs/icons/People.png">
                 <div class="info">
                     <h1>
@@ -73,7 +73,7 @@
                     <h1>
                         <?php echo $housesCount; ?>
                     </h1>
-                    <p>Houses</p>
+                    <p>Families</p>
                 </div>
             </a>
             <a href="officials.php" class="cards">

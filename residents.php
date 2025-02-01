@@ -9,14 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barangay Management System | Linux Adona | BSIT 2202</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
 
     <div class="sidebar">
         <div class="brgy-logo">
-            <img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAPtJREFUSEvd1UErB0EYx/HPvyQuckDKwYWSg+TmoFzcvRpvwTsSpeTCSU4uSiQXeQGOmNrVtmba2cYc2NvWzPc7z/PMr5mo/E0q8w0JDnGMjcyD3OEIJ+36IcErljLh7bIHrOUKPkbCf3CHKvh/grbitrL+f3GLflUwg/daQ57FGfZqCOZw+iXYxSOmsZIQjZ7BPC6xhaemgilcYzkiGSUIib3AZgf+0kBDMq+wmNmy73x1g3aL7QawiucebAc3JYJ7rDeA2HVcwFtPMKpFYW8qQAFURdA9cEyQ6lh0BrEK/q4g87IklyVbFHKwX0g/x0Hui1boMvjoFws+AS+QLxnB09RAAAAAAElFTkSuQmCC" />
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAPtJREFUSEvd1UErB0EYx/HPvyQuckDKwYWSg+TmoFzcvRpvwTsSpeTCSU4uSiQXeQGOmNrVtmba2cYc2NvWzPc7z/PMr5mo/E0q8w0JDnGMjcyD3OEIJ+36IcErljLh7bIHrOUKPkbCf3CHKvh/grbitrL+f3GLflUwg/daQ57FGfZqCOZw+iXYxSOmsZIQjZ7BPC6xhaemgilcYzkiGSUIib3AZgf+0kBDMq+wmNmy73x1g3aL7QawiucebAc3JYJ7rDeA2HVcwFtPMKpFYW8qQAFURdA9cEyQ6lh0BrEK/q4g87IklyVbFHKwX0g/x0Hui1boMvjoFws+AS+QLxnB09RAAAAAAElFTkSuQmCC" />
             <h2>Barangay</h2>
         </div>
         <div class="nav">
@@ -27,12 +27,12 @@
                 <div class="seperator">MENU</div>
                 <div class="menu">
                     <li>
-                        <a href="residents.php">Families</a>
-                    </li>
-                    <li>
                         <img
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANVJREFUSEu11j9qAkEUB+DP24kXMIiNpLO2SG0g9jaeIG0OELSxDzlAIJhCSCkWIohoBnbBIsv+cd/AVgu/b5l5+950BK9OcL4i4AcbjPB9z0cUAZcs9IAJFk2RMiDPXWGI37pQVSDl7vCItzpIHSDPfcUY+ypQEyDlbjHAugxpCqTcVAhzPP09xyLoHiDP/EIfn/8hbQAp94QpZjjfQm0BeeYS3VukbeAdvQggbdEzXiK2KOyQQ8s09EcLaxWhzS6sXYcNnI+snh+iRmZZF678PvxWcQWoeUAZZIKJWAAAAABJRU5ErkJggg==" />
-                        <a href="households.php" class="active">Households</a>
+                        <a href="residents.php" class="active">Residents</a>
+                    </li>
+                    <li>
+                        <a href="households.php">Families</a>
                     </li>
 
                     <li>
@@ -40,7 +40,6 @@
                     </li>
                 </div>
             </ul>
-
         </div>
         <div class="session">
             <div class="user">
@@ -51,52 +50,35 @@
                 </a>
             </div>
         </div>
-
     </div>
 
     <div class="main">
         <header>
-            <h2>Households</h2>
+            <h2>Residents</h2>
         </header>
 
         <div class="content">
-            <h3>Houshold List</h3>
+            <div class="top-bx">
+                <h3>Resident List</h3>
+                <form method="POST" action="" onsubmit="return refreshTable();">
+                    <div class="form-bx">
+                        <input type="text" name="search" placeholder="Search" required>
+                        <button type="submit">Search</button>
+                        <button type="button" onclick="resetSearch()" class="refresh-btn"><i class='bx bx-refresh'></i></button>
+                    </div>
+                </form>
+            </div>
             <table>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Family</th>
-                        <th>Head</th>
-                        <th>House Number</th>
-                        <th>Street</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $sql = "SELECT f.family_name, a.house_number, r.first_name, r.last_name, a.street
-                            FROM family f
-                            JOIN address a ON a.address_id = f.address_id
-                            JOIN resident r ON r.resident_id = f.family_head_id";
-                    $result = $conn->query($sql);
-
-                    $counter = 0;
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $counter++;
-
-                            echo "<tr>
-                                    <td>" . $counter . "</td>
-                                    <td>" . $row['family_name'] . "</td>
-                                    <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
-                                    <td>" . $row['house_number'] . "</td>
-                                    <td>" . $row['street'] . "</td>
-                                  </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='4'>No families found.</td></tr>";
-                    }
-                    ?>
+                    <?php include 'brgy_management/search.php'; ?>
                 </tbody>
             </table>
         </div>
@@ -110,6 +92,7 @@
         </footer>
     </div>
 
+    <script src="script.js"></script>
 
 </body>
 

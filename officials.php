@@ -27,10 +27,10 @@
                 <div class="seperator">MENU</div>
                 <div class="menu">
                     <li>
-                        <a href="families.php">Families</a>
+                        <a href="residents.php">Residents</a>
                     </li>
                     <li>
-                        <a href="households.php">Households</a>
+                        <a href="households.php">Families</a>
                     </li>
                     <li>
                         <img
