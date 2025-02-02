@@ -4,7 +4,8 @@ $sql = "SELECT r.resident_id, r.first_name, r.middle_name, r.last_name, r.gender
         FROM resident r
         JOIN address a ON r.address_id = a.address_id
         WHERE r.first_name LIKE '%$search%' OR r.last_name LIKE '%$search%' 
-        OR a.house_number LIKE '%$search%' OR a.street LIKE '%$search%' OR r.gender LIKE '%$search%'";
+        OR a.house_number LIKE '%$search%' OR a.street LIKE '%$search%' OR r.gender LIKE '%$search%'
+        ORDER BY r.first_name, r.last_name ASC";
 $result = $conn->query($sql);
 
 $counter = 0;

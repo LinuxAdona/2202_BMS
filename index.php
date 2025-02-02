@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barangay Management System | Linux Adona | BSIT 2202</title>
+    <link rel="stylesheet" href="styles/index_style.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -61,7 +62,7 @@
             <h2>Barangay Management System</h2>
         </header>
 
-        <div class="stats">
+        <div class="content">
             <a href="residents.php" class="cards">
                 <img src="imgs/icons/People.png">
                 <div class="info">
@@ -72,10 +73,10 @@
                 </div>
             </a>
             <a href="households.php" class="cards">
-                <img src="imgs/icons/purok.png">
+                <img src="imgs/icons/families.png">
                 <div class="info">
                     <h1>
-                        <?php echo $housesCount; ?>
+                        <?php echo $familyCount; ?>
                     </h1>
                     <p>Families</p>
                 </div>
@@ -83,8 +84,15 @@
             <a href="officials.php" class="cards">
                 <img src="imgs/icons/Officials.png">
                 <div class="info">
-                    <h1>0</h1>
+                    <h1><?php echo $officialsCount; ?></h1>
                     <p>Officials</p>
+                </div>
+            </a>
+            <a href="houses.php" class="cards">
+                <img src="imgs/icons/purok.png">
+                <div class="info">
+                    <h1><?php echo $housesCount; ?></h1>
+                    <p>Houses</p>
                 </div>
             </a>
         </div>

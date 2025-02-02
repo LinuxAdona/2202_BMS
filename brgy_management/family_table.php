@@ -6,7 +6,8 @@ $sql = "SELECT f.family_id, f.family_name, a.house_number, r.first_name, r.last_
         JOIN resident r ON r.resident_id = f.family_head_id
         WHERE f.family_name LIKE '%$search%' OR a.house_number LIKE '%$search%'
         OR r.first_name LIKE '%$search%' OR r.last_name LIKE '%$search%'
-        OR a.street LIKE '%$search%'";
+        OR a.street LIKE '%$search%'
+        ORDER BY f.family_name ASC";
 $result = $conn->query($sql);
 
 $counter = 0;

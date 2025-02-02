@@ -27,21 +27,19 @@
                 <div class="seperator">MENU</div>
                 <div class="menu">
                     <li>
-                        <img
-                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANVJREFUSEu11j9qAkEUB+DP24kXMIiNpLO2SG0g9jaeIG0OELSxDzlAIJhCSCkWIohoBnbBIsv+cd/AVgu/b5l5+950BK9OcL4i4AcbjPB9z0cUAZcs9IAJFk2RMiDPXWGI37pQVSDl7vCItzpIHSDPfcUY+ypQEyDlbjHAugxpCqTcVAhzPP09xyLoHiDP/EIfn/8hbQAp94QpZjjfQm0BeeYS3VukbeAdvQggbdEzXiK2KOyQQ8s09EcLaxWhzS6sXYcNnI+snh+iRmZZF678PvxWcQWoeUAZZIKJWAAAAABJRU5ErkJggg==" />
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANVJREFUSEu11j9qAkEUB+DP24kXMIiNpLO2SG0g9jaeIG0OELSxDzlAIJhCSCkWIohoBnbBIsv+cd/AVgu/b5l5+950BK9OcL4i4AcbjPB9z0cUAZcs9IAJFk2RMiDPXWGI37pQVSDl7vCItzpIHSDPfcUY+ypQEyDlbjHAugxpCqTcVAhzPP09xyLoHiDP/EIfn/8hbQAp94QpZjjfQm0BeeYS3VukbeAdvQggbdEzXiK2KOyQQ8s09EcLaxWhzS6sXYcNnI+snh+iRmZZF678PvxWcQWoeUAZZIKJWAAAAABJRU5ErkJggg==" />
                         <a href="residents.php">Residents</a>
+                    </li>
                     <li class="active">
                         <i class='bx bx-dots-vertical-rounded'></i>
                         <?php
                         $resident_id = isset($_GET["id"]) ? $_GET["id"] : 0;
-                        echo "<a href='resident_view.php?id='" . $resident_id . ">View Resident</a>";
+                        echo "<a href='resident_view.php?id=" . $resident_id . "'>View Resident</a>";
                         ?>
-                    </li>
                     </li>
                     <li>
                         <a href="households.php">Families</a>
                     </li>
-
                     <li>
                         <a href="officials.php">Officials</a>
                     </li>
@@ -51,8 +49,7 @@
         <div class="session">
             <div class="user">
                 <a href="https://www.facebook.com/Linux.Sale.Adona">
-                    <img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAZxJREFUSEu11L1vjWEYx/HPSecmmgpCajHUaOofIF5K01EbU/8CidCkpoYNIQzduyojUukLo9UmBgtB21RIGQnPldxtTh7nPveTU+da7/v6fa/3lj5bq8/6mgImq0Bu4kQK6D3m8bwUYBPAHG5nhGZxvxukBDiPF9hAgFaS2DncwRGcwXoOUgKsJoFpPK6JTGEJy7jYK+AbDlRlGMTPmsgwtvEZx3oFbOIQDuJrBhB/olQdrVSiqPlZRDmeZEoUPbrQK6C9yTEx0ZOBBL2Lw/ttcgR2DSEWwu32u+pLQB/uZ0x3fUdxHTGev/Ayzf+7/7FoJY2u792aHOMZUY/hVJqmdrEtvMHrlM2PTqQcIKZiMTWxSQaxCzNYq3/uBJjAs/TxKW4hjtv3mnNkGMcv3sMnLAKLsd2zOmAIb1PkcWtuNAkf91I5v+BkNXk7u351wFU8wCucbige30InljIO35Vq8xdygDhol0rLkwGPp8P3CJdzgA8YQZSqXvNSQkfxCR9xPAf4kx5KNyoH+8e/V6FSNtkpauzY9GPfM/gL5dBHGcZ57nQAAAAASUVORK5CYII=" />
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAZxJREFUSEu11L1vjWEYx/HPSecmmgpCajHUaOofIF5K01EbU/8CidCkpoYNIQzduyojUukLo9UmBgtB21RIGQnPldxtTh7nPveTU+da7/v6fa/3lj5bq8/6mgImq0Bu4kQK6D3m8bwUYBPAHG5nhGZxvxukBDiPF9hAgFaS2DncwRGcwXoOUgKsJoFpPK6JTGEJy7jYK+AbDlRlGMTPmsgwtvEZx3oFbOIQDuJrBhB/olQdrVSiqPlZRDmeZEoUPbrQK6C9yTEx0ZOBBL2Lw/ttcgR2DSEWwu32u+pLQB/uZ0x3fUdxHTGev/Ayzf+7/7FoJY2u792aHOMZUY/hVJqmdrEtvMHrlM2PTqQcIKZiMTWxSQaxCzNYq3/uBJjAs/TxKW4hjtv3mnNkGMcv3sMnLAKLsd2zOmAIb1PkcWtuNAkf91I5v+BkNXk7u351wFU8wCucbige30InljIO35Vq8xdygDhol0rLkwGPp8P3CJdzgA8YQZSqXvNSQkfxCR9xPAf4kx5KNyoH+8e/V6FSNtkpauzY9GPfM/gL5dBHGcZ57nQAAAAASUVORK5CYII=" />
                     <p>Linux Adona</p>
                 </a>
             </div>
@@ -70,11 +67,19 @@
             <p>Family:
                 <?php
                 $family_id = isset($resident) ? $resident['family_id'] : 0;
-                $family_sql = "SELECT family_name FROM family WHERE family_id = $family_id";
-                $family_result = $conn->query($family_sql);
-                if ($family_result->num_rows > 0) {
-                    $family = $family_result->fetch_assoc();
-                    echo $family['family_name'];
+                if ($family_id > 0) {
+                    $family_sql = "SELECT family_name FROM family WHERE family_id = ?";
+                    $stmt = $conn->prepare($family_sql);
+                    $stmt->bind_param("i", $family_id);
+                    $stmt->execute();
+                    $family_result = $stmt->get_result();
+
+                    if ($family_result->num_rows > 0) {
+                        $family = $family_result->fetch_assoc();
+                        echo $family['family_name'];
+                    } else {
+                        echo 'N/A';
+                    }
                 } else {
                     echo 'N/A';
                 }
@@ -86,13 +91,21 @@
                              FROM resident r
                              JOIN family f ON r.family_id = f.family_id
                              JOIN family_head h ON r.resident_id = h.resident_id
-                             WHERE f.family_id = $family_id";
-                $head_result = $conn->query($head_sql);
-                if ($head_result->num_rows > 0) {
-                    $head = $head_result->fetch_assoc();
-                    echo $head['first_name'] . " " . substr($head['middle_name'], 0, 1) . ". " . $head['last_name'];
+                             WHERE f.family_id = ?";
+                $head_stmt = $conn->prepare($head_sql);
+                $head_stmt->bind_param("i", $family_id);
+                $head_stmt->execute();
+                $head_result = $head_stmt->get_result();
+
+                if ($head_result) {
+                    if ($head_result->num_rows > 0) {
+                        $head = $head_result->fetch_assoc();
+                        echo $head['first_name'] . " " . substr($head['middle_name'], 0, 1) . ". " . $head['last_name'];
+                    } else {
+                        echo 'N/A';
+                    }
                 } else {
-                    echo 'N/A';
+                    echo 'SQL Error: ' . $conn->error;
                 }
                 ?>
             </p>
