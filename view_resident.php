@@ -80,7 +80,7 @@
                 }
                 ?>
             </p>
-            <p>Family Head:
+            <p>Head:
                 <?php
                 $head_sql = "SELECT r.first_name, r.middle_name, r.last_name
                              FROM resident r

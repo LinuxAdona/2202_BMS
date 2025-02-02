@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barangay Management System | Linux Adona | BSIT 2202</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/residents_style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -26,10 +26,10 @@
             <ul>
                 <div class="seperator">MENU</div>
                 <div class="menu">
-                    <li>
+                    <li class="active">
                         <img
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANVJREFUSEu11j9qAkEUB+DP24kXMIiNpLO2SG0g9jaeIG0OELSxDzlAIJhCSCkWIohoBnbBIsv+cd/AVgu/b5l5+950BK9OcL4i4AcbjPB9z0cUAZcs9IAJFk2RMiDPXWGI37pQVSDl7vCItzpIHSDPfcUY+ypQEyDlbjHAugxpCqTcVAhzPP09xyLoHiDP/EIfn/8hbQAp94QpZjjfQm0BeeYS3VukbeAdvQggbdEzXiK2KOyQQ8s09EcLaxWhzS6sXYcNnI+snh+iRmZZF678PvxWcQWoeUAZZIKJWAAAAABJRU5ErkJggg==" />
-                        <a href="residents.php" class="active">Residents</a>
+                        <a href="residents.php">Residents</a>
                     </li>
                     <li>
                         <a href="households.php">Families</a>
@@ -64,7 +64,9 @@
                     <div class="form-bx">
                         <input type="text" name="search" placeholder="Search" required>
                         <button type="submit">Search</button>
-                        <button type="button" onclick="resetSearch()" class="refresh-btn"><i class='bx bx-refresh'></i></button>
+                        <a href="residents.php">
+                            <button type="button" class="refresh-btn"><i class='bx bx-refresh'></i></button>
+                        </a>
                     </div>
                 </form>
             </div>
@@ -78,7 +80,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php include 'brgy_management/search.php'; ?>
+                    <?php include 'brgy_management/resident_table.php'; ?>
                 </tbody>
             </table>
         </div>

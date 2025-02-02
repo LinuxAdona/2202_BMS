@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barangay Management System | Linux Adona | BSIT 2202</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/families_style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -29,10 +30,10 @@
                     <li>
                         <a href="residents.php">Families</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <img
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANVJREFUSEu11j9qAkEUB+DP24kXMIiNpLO2SG0g9jaeIG0OELSxDzlAIJhCSCkWIohoBnbBIsv+cd/AVgu/b5l5+950BK9OcL4i4AcbjPB9z0cUAZcs9IAJFk2RMiDPXWGI37pQVSDl7vCItzpIHSDPfcUY+ypQEyDlbjHAugxpCqTcVAhzPP09xyLoHiDP/EIfn/8hbQAp94QpZjjfQm0BeeYS3VukbeAdvQggbdEzXiK2KOyQQ8s09EcLaxWhzS6sXYcNnI+snh+iRmZZF678PvxWcQWoeUAZZIKJWAAAAABJRU5ErkJggg==" />
-                        <a href="households.php" class="active">Households</a>
+                        <a href="households.php">Households</a>
                     </li>
 
                     <li>
@@ -56,47 +57,41 @@
 
     <div class="main">
         <header>
-            <h2>Households</h2>
+            <h2>Families</h2>
         </header>
 
         <div class="content">
-            <h3>Houshold List</h3>
+            <div class="top-bx">
+                <h3>Family List</h3>
+                <form method="GET" action="" onsubmit="return refreshTable()">
+                    <div class="form-bx">
+                        <input type="text" name="search" placeholder="Search" required>
+                        <button type="submit">Search</button>
+                        <a href="households.php">
+                            <button type="button" class="refresh-btn"><i class='bx bx-refresh'></i></button>
+                        </a>
+                    </div>
+                </form>
+                <a href="add_resident.php">
+                    <button class="add-btn">
+                        <i class='bx bx-folder-plus'></i>
+                        <p>Add Family</p>
+                    </button>
+                </a>
+            </div>
             <table>
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Family</th>
                         <th>Head</th>
-                        <th>House Number</th>
+                        <th>House No.</th>
                         <th>Street</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $sql = "SELECT f.family_name, a.house_number, r.first_name, r.last_name, a.street
-                            FROM family f
-                            JOIN address a ON a.address_id = f.address_id
-                            JOIN resident r ON r.resident_id = f.family_head_id";
-                    $result = $conn->query($sql);
-
-                    $counter = 0;
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $counter++;
-
-                            echo "<tr>
-                                    <td>" . $counter . "</td>
-                                    <td>" . $row['family_name'] . "</td>
-                                    <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
-                                    <td>" . $row['house_number'] . "</td>
-                                    <td>" . $row['street'] . "</td>
-                                  </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='4'>No families found.</td></tr>";
-                    }
-                    ?>
+                    <?php include "brgy_management/family_table.php"; ?>
                 </tbody>
             </table>
         </div>

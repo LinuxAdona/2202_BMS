@@ -266,3 +266,136 @@ footer {
 h3 {
     margin: 20px 0 0 0;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border: 1px solid #b8b8b8;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px 10px;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #b8b8b8;
+}
+
+th:nth-child(4) {
+    text-align: center;
+}
+
+td {
+    white-space: nowrap;
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: auto;
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 150px;
+}
+
+th:nth-child(1), td:nth-child(1), th:nth-child(4), td:nth-child(4) {
+    width: 1%;
+}
+
+th {
+    background-color: #ffffff;
+}
+
+.gender {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.top-bx {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-bx h3 {
+    margin: 0;
+}
+
+.form-bx {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    width: 400px;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #2980b9;
+    color: white;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.refresh-btn {
+    font-size: 20px;
+    padding: 5px 10px;
+}
+
+form button:hover {
+    background-color: #3498db;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 30px;
+    padding: 0 20px;
+}
+
+.actions a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.bx-action {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.bx-action:hover {
+    background-color: #f4f4f4;
+}
+
+.view-link .bx-action:hover {
+    color: #038cfc;
+}
+
+.edit-link .bx-action:hover {
+    color: #04cf4e;
+}
+
+.delete-link .bx-action:hover {
+    color: #e30707;
+}
+
