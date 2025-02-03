@@ -1,5 +1,4 @@
-<?php include "brgy_management/db.php"; ?>
-<?php include "brgy_management/counter.php"; ?>
+<?php include "../brgy_management/db.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barangay Management System | Linux Adona | BSIT 2202</title>
-    <link rel="stylesheet" href="styles/index.css">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/houses/houses.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -23,29 +22,28 @@
         </div>
         <div class="nav">
             <ul>
-                <li class="active">
-                    <img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANVJREFUSEu11j9qAkEUB+DP24kXMIiNpLO2SG0g9jaeIG0OELSxDzlAIJhCSCkWIohoBnbBIsv+cd/AVgu/b5l5+950BK9OcL4i4AcbjPB9z0cUAZcs9IAJFk2RMiDPXWGI37pQVSDl7vCItzpIHSDPfcUY+ypQEyDlbjHAugxpCqTcVAhzPP09xyLoHiDP/EIfn/8hbQAp94QpZjjfQm0BeeYS3VukbeAdvQggbdEzXiK2KOyQQ8s09EcLaxWhzS6sXYcNnI+snh+iRmZZF678PvxWcQWoeUAZZIKJWAAAAABJRU5ErkJggg==" />
-                    <a href="index.php">Home</a>
-                </li>
+                <li><a href="../index.php">Home</a></li>
             </ul>
             <ul>
                 <div class="seperator">MENU</div>
                 <div class="menu">
                     <li>
-                        <a href="residents-page/residents.php">Residents</a>
+                        <a href="../residents-page/residents.php">Residents</a>
                     </li>
                     <li>
-                        <a href="families-page/families.php">Families</a>
+                        <a href="../families-page/families.php">Families</a>
                     </li>
                     <li>
-                        <a href="officials-page/officials.php">Officials</a>
+                        <a href="../officials-page/officials.php">Officials</a>
                     </li>
-                    <li>
-                        <a href="houses-page/houses.php">Houses</a>
+                    <li class="active">
+                        <img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANVJREFUSEu11j9qAkEUB+DP24kXMIiNpLO2SG0g9jaeIG0OELSxDzlAIJhCSCkWIohoBnbBIsv+cd/AVgu/b5l5+950BK9OcL4i4AcbjPB9z0cUAZcs9IAJFk2RMiDPXWGI37pQVSDl7vCItzpIHSDPfcUY+ypQEyDlbjHAugxpCqTcVAhzPP09xyLoHiDP/EIfn/8hbQAp94QpZjjfQm0BeeYS3VukbeAdvQggbdEzXiK2KOyQQ8s09EcLaxWhzS6sXYcNnI+snh+iRmZZF678PvxWcQWoeUAZZIKJWAAAAABJRU5ErkJggg==" />
+                        <a href="houses.php">Houses</a>
                     </li>
                 </div>
             </ul>
+
         </div>
         <div class="session">
             <div class="user">
@@ -56,51 +54,46 @@
                 </a>
             </div>
         </div>
+
     </div>
 
     <div class="main">
         <header>
-            <h2>Barangay Management System</h2>
+            <h2>Houses</h2>
         </header>
 
         <div class="content">
-            <a href="residents-page/residents.php" class="cards">
-                <img src="imgs/icons/People.png">
-                <div class="info">
-                    <h1>
-                        <?php echo $residentsCount; ?>
-                    </h1>
-                    <p>Residents</p>
-                </div>
-            </a>
-            <a href="families-page/families.php" class="cards">
-                <img src="imgs/icons/families.png">
-                <div class="info">
-                    <h1>
-                        <?php echo $familyCount; ?>
-                    </h1>
-                    <p>Families</p>
-                </div>
-            </a>
-            <a href="officials-page/officials.php" class="cards">
-                <img src="imgs/icons/Officials.png">
-                <div class="info">
-                    <h1><?php echo $officialsCount; ?></h1>
-                    <p>Officials</p>
-                </div>
-            </a>
-            <a href="houses-page/houses.php" class="cards">
-                <img src="imgs/icons/purok.png">
-                <div class="info">
-                    <h1><?php echo $housesCount; ?></h1>
-                    <p>Houses</p>
-                </div>
-            </a>
+            <div class="top-bx">
+                <h3>House List</h3>
+                <form method="GET" action="" onsubmit="return refreshTable()">
+                    <div class="form-bx">
+                        <input type="text" name="search" placeholder="Search" required>
+                        <button type="submit">Search</button>
+                        <a href="houses.php">
+                            <button type="button" class="refresh-btn"><i class='bx bx-refresh'></i></button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>House No.</th>
+                        <th>Street</th>
+                        <th>Families</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php include '../brgy_management/tables/houses_info/houses_table.php'; ?>
+                </tbody>
+            </table>
         </div>
 
         <footer>
             <div class="bsu-logo">
-                <img src="imgs/Batangas_State_Logo.png">
+                <img src="../imgs/Batangas_State_Logo.png">
                 <p>Batangas State University - ARASOF</p>
             </div>
             <p>Created by Linux Adona from BSIT-2202</p>

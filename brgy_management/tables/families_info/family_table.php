@@ -1,13 +1,13 @@
 <?php
 $search = isset($_GET['search']) ? $_GET['search'] : '';
-$sql = "SELECT f.family_id, f.family_name, a.house_number, r.first_name, r.last_name, a.street
+$sql = "SELECT f.family_id, f.family_name, a.house_number, r.first_name, r.middle_name, r.last_name, a.street
         FROM family f
         JOIN address a ON a.address_id = f.address_id
         JOIN resident r ON r.resident_id = f.family_head_id
         WHERE f.family_name LIKE '%$search%' OR a.house_number LIKE '%$search%'
         OR r.first_name LIKE '%$search%' OR r.last_name LIKE '%$search%'
         OR a.street LIKE '%$search%'
-        ORDER BY f.family_name ASC";
+        ORDER BY r.first_name, r.last_name ASC";
 $result = $conn->query($sql);
 
 $counter = 0;
@@ -18,10 +18,8 @@ if ($result->num_rows > 0) {
 
         $to_string = "<tr>
                         <td>" . $counter . "</td>
+                        <td>" . $row['first_name'] . " " . substr($row['middle_name'], 0, 1) . ". " . $row['last_name'] . "</td>
                         <td>" . $row['family_name'] . "</td>
-                        <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
-                        <td>" . $row['house_number'] . "</td>
-                        <td>" . $row['street'] . "</td>
                         <td>
                             <div class='actions'>
                                 <a href='view_family.php?id=" . $row['family_id'] . "' class='view-link'>

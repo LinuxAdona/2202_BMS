@@ -34,12 +34,6 @@ if ($result->num_rows > 0) {
                                         <p>View</p>
                                     </div>
                                 </a>
-                                <a href='edit_resident.php?id=" . $row['resident_id'] . "' class='edit-link'>
-                                    <div class='bx-action'>
-                                        <i class='bx bx-edit' ></i>
-                                        <p>Edit</p>
-                                    </div>
-                                </a>
                                 <a href='delete_resident.php?id=" . $row['resident_id'] . "' class='delete-link'>
                                     <div class='bx-action'>
                                         <i class='bx bx-trash' ></i>

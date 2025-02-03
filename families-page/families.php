@@ -1,5 +1,4 @@
-<?php include "brgy_management/db.php"; ?>
-<?php include "brgy_management/counter.php"; ?>
+<?php include "../brgy_management/db.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barangay Management System | Linux Adona | BSIT 2202</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../styles/families.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -21,21 +21,24 @@
         </div>
         <div class="nav">
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="../index.php">Home</a></li>
             </ul>
             <ul>
                 <div class="seperator">MENU</div>
                 <div class="menu">
                     <li>
-                        <a href="residents.php">Residents</a>
-                    </li>
-                    <li>
-                        <a href="households.php">Families</a>
+                        <a href="../residents-page/residents.php">Residents</a>
                     </li>
                     <li class="active">
                         <img
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANVJREFUSEu11j9qAkEUB+DP24kXMIiNpLO2SG0g9jaeIG0OELSxDzlAIJhCSCkWIohoBnbBIsv+cd/AVgu/b5l5+950BK9OcL4i4AcbjPB9z0cUAZcs9IAJFk2RMiDPXWGI37pQVSDl7vCItzpIHSDPfcUY+ypQEyDlbjHAugxpCqTcVAhzPP09xyLoHiDP/EIfn/8hbQAp94QpZjjfQm0BeeYS3VukbeAdvQggbdEzXiK2KOyQQ8s09EcLaxWhzS6sXYcNnI+snh+iRmZZF678PvxWcQWoeUAZZIKJWAAAAABJRU5ErkJggg==" />
-                        <a href="officials.php">Officials</a>
+                        <a href="families.php">Families</a>
+                    </li>
+                    <li>
+                        <a href="../officials-page/officials.php">Officials</a>
+                    </li>
+                    <li>
+                        <a href="../houses-page/houses.php">Houses</a>
                     </li>
                 </div>
             </ul>
@@ -55,19 +58,51 @@
 
     <div class="main">
         <header>
-            <h2>Officials</h2>
+            <h2>Families</h2>
         </header>
 
+        <div class="content">
+            <div class="top-bx">
+                <h3>Family List</h3>
+                <form method="GET" action="" onsubmit="return refreshTable()">
+                    <div class="form-bx">
+                        <input type="text" name="search" placeholder="Search" required>
+                        <button type="submit">Search</button>
+                        <a href="families.php">
+                            <button type="button" class="refresh-btn"><i class='bx bx-refresh'></i></button>
+                        </a>
+                    </div>
+                </form>
+                <a href="add_resident.php">
+                    <button class="add-btn">
+                        <i class='bx bx-folder-plus'></i>
+                        <p>Add Family</p>
+                    </button>
+                </a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Head</th>
+                        <th>Family</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php include "../brgy_management/tables/families_info/family_table.php"; ?>
+                </tbody>
+            </table>
+        </div>
 
         <footer>
             <div class="bsu-logo">
-                <img src="imgs/Batangas_State_Logo.png">
+                <img src="../imgs/Batangas_State_Logo.png">
                 <p>Batangas State University - ARASOF</p>
             </div>
             <p>Created by Linux Adona from BSIT-2202</p>
         </footer>
     </div>
-
 
 </body>
 

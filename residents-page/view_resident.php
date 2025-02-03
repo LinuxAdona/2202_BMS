@@ -1,5 +1,6 @@
-<?php include "brgy_management/db.php"; ?>
-<?php include "brgy_management/counter.php"; ?>
+<?php include "../brgy_management/db.php"; ?>
+<?php include "../brgy_management/tables/residents_info/resident_details.php"; ?>
+<?php include "../brgy_management/tables/residents_info/resident_family.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,11 +9,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barangay Management System | Linux Adona | BSIT 2202</title>
-    <link rel="stylesheet" href="styles/info_style.css">
+    <link rel="stylesheet" href="../styles/residents/info.css">
+    <link rel="stylesheet" href="../styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
+
+    <?php
+    $resident_id = isset($_GET['id']) ? $_GET['id'] : 0;
+    $resident = getResidentDetails($conn, $resident_id);
+    ?>
 
     <div class="sidebar">
         <div class="brgy-logo">
@@ -21,7 +28,7 @@
         </div>
         <div class="nav">
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="../index.php">Home</a></li>
             </ul>
             <ul>
                 <div class="seperator">MENU</div>
@@ -34,14 +41,17 @@
                         <i class='bx bx-dots-vertical-rounded'></i>
                         <?php
                         $resident_id = isset($_GET["id"]) ? $_GET["id"] : 0;
-                        echo "<a href='resident_view.php?id=" . $resident_id . "'>View Resident</a>";
+                        echo "<a href='view_resident.php?id=" . $resident_id . "'>View Resident</a>";
                         ?>
                     </li>
                     <li>
-                        <a href="households.php">Families</a>
+                        <a href="../families-page/families.php">Families</a>
                     </li>
                     <li>
-                        <a href="officials.php">Officials</a>
+                        <a href="../officials-page/officials.php">Officials</a>
+                    </li>
+                    <li>
+                        <a href="../houses-page/houses.php">Houses</a>
                     </li>
                 </div>
             </ul>
@@ -58,72 +68,70 @@
 
     <div class="main">
         <header>
-            <h2>
-                <?php include "brgy_management/resident_info.php"; ?>
-            </h2>
+            <h2>Resident Info</h2>
         </header>
 
         <div class="content">
-            <p>Family:
-                <?php
-                $family_id = isset($resident) ? $resident['family_id'] : 0;
-                if ($family_id > 0) {
-                    $family_sql = "SELECT family_name FROM family WHERE family_id = ?";
-                    $stmt = $conn->prepare($family_sql);
-                    $stmt->bind_param("i", $family_id);
-                    $stmt->execute();
-                    $family_result = $stmt->get_result();
+            <div class="left-bx">
+                <div class="resident-bx">
+                    <h2>
+                        <?php echo $resident ? $resident['first_name'] . " " . $resident['middle_name'] . " " . $resident['last_name'] : "Resident not found."; ?>
+                    </h2>
+                    <p><?php echo getFamilyName($conn, $resident['family_id'] ?? 0); ?> Family</p>
+                </div>
+                <div class="resident-info-bx">
 
-                    if ($family_result->num_rows > 0) {
-                        $family = $family_result->fetch_assoc();
-                        echo $family['family_name'];
-                    } else {
-                        echo 'N/A';
-                    }
-                } else {
-                    echo 'N/A';
-                }
-                ?>
-            </p>
-            <p>Head:
-                <?php
-                $head_sql = "SELECT r.first_name, r.middle_name, r.last_name
-                             FROM resident r
-                             JOIN family f ON r.family_id = f.family_id
-                             JOIN family_head h ON r.resident_id = h.resident_id
-                             WHERE f.family_id = ?";
-                $head_stmt = $conn->prepare($head_sql);
-                $head_stmt->bind_param("i", $family_id);
-                $head_stmt->execute();
-                $head_result = $head_stmt->get_result();
+                    <div class="info-bx">
+                        <?php echo getGender($conn, $resident_id ?? 0); ?>
+                        <h4><?php echo $resident['gender'] ?? "N/A"; ?></h4>
+                    </div>
 
-                if ($head_result) {
-                    if ($head_result->num_rows > 0) {
-                        $head = $head_result->fetch_assoc();
-                        echo $head['first_name'] . " " . substr($head['middle_name'], 0, 1) . ". " . $head['last_name'];
-                    } else {
-                        echo 'N/A';
-                    }
-                } else {
-                    echo 'SQL Error: ' . $conn->error;
-                }
-                ?>
-            </p>
-            <p>Gender: <?php echo isset($resident) ? $resident['gender'] : 'N/A'; ?></p>
-            <p>Address: <?php echo isset($resident) ? $resident['house_number'] . " " . $resident['street'] : 'N/A'; ?></p>
-            <p>Date Of Birth: <?php echo isset($resident) ? $resident['date_of_birth'] : 'N/A'; ?></p>
+                    <div class="info-bx">
+                        <i class='bx bxs-face'></i>
+                        <h4>Family Head</h4>
+                    </div>
+                    <p><?php echo getFamilyHead($conn, $resident['family_id'] ?? 0) ?></p>
+
+                    <div class="info-bx">
+                        <i class='bx bxs-building-house'></i>
+                        <h4>Address</h4>
+                    </div>
+                    <p><?php echo isset($resident) ? $resident['house_number'] . " " . $resident['street'] : 'N/A'; ?></p>
+
+                    <div class="info-bx">
+                        <i class='bx bxs-calendar'></i>
+                        <h4>Date of Birth</h4>
+                    </div>
+                    <p><?php echo isset($resident['date_of_birth']) ? date("F j, Y", strtotime($resident['date_of_birth'])) : 'N/A'; ?></p>
+                </div>
+            </div>
+
+            <div class="right-bx">
+                <h2>Family Members</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Relationship</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php echo loadFamilyMembers($conn, $resident['family_id'] ?? 0); ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <footer>
             <div class="bsu-logo">
-                <img src="imgs/Batangas_State_Logo.png">
+                <img src="../imgs/Batangas_State_Logo.png">
                 <p>Batangas State University - ARASOF</p>
             </div>
             <p>Created by Linux Adona from BSIT-2202</p>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 
 </body>
 
