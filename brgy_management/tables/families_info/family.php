@@ -37,12 +37,15 @@ function loadFamilyMembers($conn, $family_id, $resident_id)
                                 <td>" . $child . "</td>
                                 <td>
                                     <div class='actions'>
-                                        <a href='../residents-page/delete_resident.php?id=" . $row['resident_id'] . "' class='delete-link'>
-                                            <div class='bx-action'>
-                                                <i class='bx bx-trash' ></i>
-                                                <p>Delete</p>
-                                            </div>
-                                        </a>
+                                        <form action='../residents-page/delete_resident.php' method='POST'>
+                                            <input type='hidden' name='id' value='" . $row['resident_id'] . "'>
+                                            <button type='submit' class='delete-link'>
+                                                <div class='bx-action'>
+                                                    <i class='bx bx-trash' ></i>
+                                                    <p>Delete</p>
+                                                </div>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>";
@@ -51,15 +54,16 @@ function loadFamilyMembers($conn, $family_id, $resident_id)
                                 <td><a href='../residents-page/view_resident.php?id=" . $row['resident_id'] . "'>" . $row['first_name'] . " " . substr($row['middle_name'], 0, 1) . ". " . $row['last_name'] . "</a></td>
                                 <td>" . $row['relationship'] . "</td>
                                 <td>
-                                <div class='actions'>
-                                    <a href='../residents-page/delete_resident.php?id=" . $row['resident_id'] . "' class='delete-link'>
-                                        <div class='bx-action'>
-                                            <i class='bx bx-trash' ></i>
-                                            <p>Delete</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </td>
+                                    <form action='../residents-page/delete_resident.php' method='POST'>
+                                        <input type='hidden' name='id' value='" . $row['resident_id'] . "'>
+                                        <button type='submit' class='delete-link'>
+                                            <div class='bx-action'>
+                                                <i class='bx bx-trash' ></i>
+                                                <p>Delete</p>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>";
                 }
             } else {
@@ -74,14 +78,15 @@ function loadFamilyMembers($conn, $family_id, $resident_id)
                                     <td><a href='../residents-page/view_resident.php?id=" . $row['resident_id'] . "'>" . $row['first_name'] . " " . substr($row['middle_name'], 0, 1) . ". " . $row['last_name'] . "</a></td>
                                     <td>" . $child . "</td>
                                     <td>
-                                        <div class='actions'>
-                                            <a href='../residents-page/delete_resident.php?id=" . $row['resident_id'] . "' class='delete-link'>
+                                        <form action='../residents-page/delete_resident.php' method='POST'>
+                                            <input type='hidden' name='id' value='" . $row['resident_id'] . "'>
+                                            <button type='submit' class='delete-link'>
                                                 <div class='bx-action'>
                                                     <i class='bx bx-trash' ></i>
                                                     <p>Delete</p>
                                                 </div>
-                                            </a>
-                                        </div>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>";
                 } else {
@@ -89,14 +94,15 @@ function loadFamilyMembers($conn, $family_id, $resident_id)
                                     <td><a href='../residents-page/view_resident.php?id=" . $row['resident_id'] . "'>" . $row['first_name'] . " " . substr($row['middle_name'], 0, 1) . ". " . $row['last_name'] . "</a></td>
                                     <td>" . $row['relationship'] . "</td>
                                     <td>
-                                        <div class='actions'>
-                                            <a href='../residents-page/delete_resident.php?id=" . $row['resident_id'] . "' class='delete-link'>
+                                        <form action='../residents-page/delete_resident.php' method='POST'>
+                                            <input type='hidden' name='id' value='" . $row['resident_id'] . "'>
+                                            <button type='submit' class='delete-link'>
                                                 <div class='bx-action'>
                                                     <i class='bx bx-trash' ></i>
                                                     <p>Delete</p>
                                                 </div>
-                                            </a>
-                                        </div>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>";
                 }

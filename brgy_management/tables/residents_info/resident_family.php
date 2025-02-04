@@ -22,6 +22,7 @@ function loadFamilyMembers($conn, $family_id, $resident_id)
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $child = '';
+            $parent = '';
 
             if (isChild($conn, $resident_id, $family_id)) {
                 if ($row['relationship'] == 'Child') {

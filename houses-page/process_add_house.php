@@ -9,8 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $families = isset($_POST['families']) ? $_POST['families'] : [];
     $no_families = isset($_POST['no_families']) ? true : false;
 
-    $sql_address = "INSERT INTO address (house_number, street, barangay_id) VALUES ('$house_number', '$street', 1)";
-    if ($conn->query($sql_address) === TRUE) {
+    $stmt_address = $conn->prepare("INSERT INTO address (house_number, street, barangay_id) VALUES (?, ?, 1)");
+    $stmt_address->bind_param("ss", $house_number, $street);
+
+    if ($stmt_address->execute()) {
         $address_id = $conn->insert_id;
 
         if (!$no_families) {
@@ -28,10 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         $response['status'] = 'error';
-        $response['message'] = "Error: " . $sql_address . "<br>" . $conn->error;
+        $response['message'] = "Error: " . $stmt_address->error;
     }
 }
 
 $conn->close();
 header('Content-Type: application/json');
 echo json_encode($response);
+exit;

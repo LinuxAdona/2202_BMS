@@ -103,7 +103,7 @@
                             <label for="relationship">Relationship to Head:</label>
                             <select id="relationship" name="relationship" required>
                                 <option value="select">Select</option>
-                                <option value="mother">Mother</option>
+                                <option value="mother">Spouse</option>
                                 <option value="child">Child</option>
                             </select>
                         </div>

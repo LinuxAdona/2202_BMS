@@ -36,12 +36,6 @@ if ($result->num_rows > 0) {
                                         <p>View</p>
                                     </div>
                                 </a>
-                                <a href='delete_officials.php?id=" . $row['officials_id'] . "' class='delete-link'>
-                                    <div class='bx-action'>
-                                        <i class='bx bx-trash' ></i>
-                                        <p>Delete</p>
-                                    </div>
-                                </a>
                             </div>
                         </td>
                     </tr>";

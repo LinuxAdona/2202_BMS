@@ -39,12 +39,15 @@ if ($result->num_rows > 0) {
                                         <p>View</p>
                                     </div>
                                 </a>
-                                <a href='delete_family.php?id=" . $row['address_id'] . "' class='delete-link'>
-                                    <div class='bx-action'>
-                                        <i class='bx bx-trash' ></i>
-                                        <p>Delete</p>
-                                    </div>
-                                </a>
+                                <form action='delete_house.php' method='POST' style='display:inline;'>
+                                    <input type='hidden' name='id' value='" . $row['address_id'] . "'>
+                                    <button type='submit' class='delete-link'>
+                                        <div class='bx-action'>
+                                            <i class='bx bx-trash' ></i>
+                                            <p>Delete</p>
+                                        </div>
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>";

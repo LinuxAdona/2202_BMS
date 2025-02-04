@@ -37,12 +37,15 @@ if ($result->num_rows > 0) {
                                         <p>View</p>
                                     </div>
                                 </a>
-                                <a href='delete_family.php?id=" . $row['family_id'] . "' class='delete-link'>
-                                    <div class='bx-action'>
-                                        <i class='bx bx-trash' ></i>
-                                        <p>Delete</p>
-                                    </div>
-                                </a>
+                                <form action='delete_family.php' method='POST' style='display:inline;'>
+                                    <input type='hidden' name='id' value='" . $row['family_id'] . "'>
+                                    <button type='submit' class='delete-link'>
+                                        <div class='bx-action'>
+                                            <i class='bx bx-trash' ></i>
+                                            <p>Delete</p>
+                                        </div>
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>";
@@ -57,7 +60,7 @@ echo "<div class='pagination'>";
 if ($page > 1) {
     echo "<a href='?page=" . ($page - 1) . "&search=" . urlencode($search) . "'><i class='bx bx-left-arrow-alt' ></i><p>Prev</p></a>";
 }
-echo " Page " . $page . " of " . $totalPages . " "; // Display current page number
+echo " Page " . $page . " of " . $totalPages . " ";
 if ($page < $totalPages) {
     echo "<a href='?page=" . ($page + 1) . "&search=" . urlencode($search) . "'><p>Next</p><i class='bx bx-right-arrow-alt'></i></a>";
 }
