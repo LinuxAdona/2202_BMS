@@ -74,6 +74,12 @@
                         </a>
                     </div>
                 </form>
+                <a href="add_houses.php">
+                    <button class="add-btn">
+                        <i class='bx bx-folder-plus'></i>
+                        <p>Add House</p>
+                    </button>
+                </a>
             </div>
             <table>
                 <thead>

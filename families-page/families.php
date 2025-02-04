@@ -7,7 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barangay Management System | Linux Adona | BSIT 2202</title>
-    <link rel="stylesheet" href="../styles/families.css">
+    <link rel="stylesheet" href="../styles/families/families.css">
+    <link rel="stylesheet" href="../styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -73,7 +74,7 @@
                         </a>
                     </div>
                 </form>
-                <a href="add_resident.php">
+                <a href="add_families.php">
                     <button class="add-btn">
                         <i class='bx bx-folder-plus'></i>
                         <p>Add Family</p>

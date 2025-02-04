@@ -62,6 +62,10 @@ th {
     margin: 0;
 }
 
+.top-bx a {
+    text-decoration: none;
+}
+
 .form-bx {
     display: flex;
     justify-content: center;
@@ -94,6 +98,20 @@ form button {
 
 form button:hover {
     background-color: #3498db;
+}
+
+.add-btn {
+    background-color: #04cf4e;
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .actions {
