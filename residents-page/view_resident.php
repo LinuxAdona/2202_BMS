@@ -116,7 +116,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php echo loadFamilyMembers($conn, $resident['family_id'] ?? 0); ?>
+                        <?php echo loadFamilyMembers($conn, $resident['family_id'] ?? 0, $resident_id); ?>
                     </tbody>
                 </table>
             </div>

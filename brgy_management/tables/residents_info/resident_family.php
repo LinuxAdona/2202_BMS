@@ -1,5 +1,5 @@
 <?php
-function loadFamilyMembers($conn, $family_id)
+function loadFamilyMembers($conn, $family_id, $resident_id)
 {
     $sql = "SELECT r.first_name, r.middle_name, r.last_name, r.resident_id, 
                    CASE 
@@ -10,10 +10,11 @@ function loadFamilyMembers($conn, $family_id)
                    END AS relationship
             FROM resident r
             JOIN relationships rel ON r.family_id = rel.family_id
-            WHERE r.family_id = ? AND (rel.father_id = r.resident_id OR rel.mother_id = r.resident_id OR rel.child_id = r.resident_id)";
+            WHERE r.family_id = ? AND (rel.father_id = r.resident_id OR rel.mother_id = r.resident_id OR rel.child_id = r.resident_id)
+            AND r.resident_id != ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $family_id);
+    $stmt->bind_param("ii", $family_id, $resident_id);
     $stmt->execute();
     $result = $stmt->get_result();
 

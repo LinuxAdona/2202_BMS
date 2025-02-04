@@ -76,7 +76,7 @@
 
         <div class="content">
             <div class="top-bx">
-                <h3>House List</h3>
+                <h3>Family List</h3>
                 <form method="GET" action="" onsubmit="return refreshTable()">
                     <div class="form-bx">
                         <input type="text" name="search" placeholder="Search" required>
