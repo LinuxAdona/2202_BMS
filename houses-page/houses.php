@@ -74,7 +74,7 @@
                         </a>
                     </div>
                 </form>
-                <a href="add_houses.php">
+                <a href="add_house.php">
                     <button class="add-btn">
                         <i class='bx bx-folder-plus'></i>
                         <p>Add House</p>
@@ -93,8 +93,6 @@
                 </thead>
                 <tbody>
                     <?php include '../brgy_management/tables/houses_info/houses_table.php'; ?>
-                </tbody>
-            </table>
         </div>
 
         <footer>

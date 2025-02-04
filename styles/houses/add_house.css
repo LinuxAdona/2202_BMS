@@ -1,0 +1,99 @@
+.content {
+    margin: 20px 30px;
+}
+
+form h3 {
+    margin: 0 0 20px 0;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+}
+
+form input[type="date"] {
+    padding: 10px;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+}
+
+form input[type="checkbox"] {
+    padding: 10px;
+    height: 15px;
+    width: 15px;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+}
+
+form select {
+    padding: 10px;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+}
+
+form button {
+    margin-top: 20px;
+    background-color: #04cf4e;
+    padding: 10px 20px;
+    color: #fff;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+form button:hover {
+    background-color: #14e661;
+}
+
+.family-name {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 40vh;
+}
+
+.details {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+}
+
+.input-bx {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.other-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.families-bx {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.select-bx {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 75%;
+}
+
+.check-bx {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

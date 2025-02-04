@@ -83,8 +83,7 @@
                 </thead>
                 <tbody>
                     <?php include '../brgy_management/tables/residents_info/resident_table.php'; ?>
-                </tbody>
-            </table>
+
         </div>
 
         <footer>

@@ -24,6 +24,11 @@
     height: calc(100vh - 171px);
 }
 
+.right-bx a {
+    text-decoration: none;
+    margin-left: auto;
+}
+
 .info-bx {
     margin: 20px 0 5px 0;
     display: flex;
@@ -66,10 +71,76 @@ td a:hover {
     color: blue;
 }
 
+th:nth-child(3) {
+    text-align: center;
+}
+
 th:nth-child(1), td:nth-child(1) {
     width: auto;
 }
 
-th:nth-child(2), td:nth-child(2) {
+th:nth-child(2), td:nth-child(2),
+th:nth-child(3), td:nth-child(3) {
     width: 1%;
+}
+
+.add-btn {
+    background-color: #04cf4e;
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-btn i {
+    font-size: 20px;
+}
+
+.add-btn:hover {
+    background-color: #14e661;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 30px;
+    padding: 0 20px;
+}
+
+.actions a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.bx-action {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.bx-action:hover {
+    background-color: #f4f4f4;
+}
+
+.view-link .bx-action:hover {
+    color: #038cfc;
+}
+
+.edit-link .bx-action:hover {
+    color: #04cf4e;
+}
+
+.delete-link .bx-action:hover {
+    color: #e30707;
 }

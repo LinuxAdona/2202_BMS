@@ -1,10 +1,11 @@
 <?php
 function getFamilyDetails($conn, $family_id)
 {
-    $sql = "SELECT r.first_name, r.middle_name, r.last_name, r.gender, a.house_number, a.street, r.family_id, r.date_of_birth
+    $sql = "SELECT r.resident_id, r.first_name, r.middle_name, r.last_name, r.gender, r.contact_number, a.house_number, a.street, r.family_id, r.date_of_birth
             FROM family f
-            JOIN resident r ON f.family_head_id = r.resident_id
-            JOIN address a ON r.address_id = a.address_id
+            JOIN family_head fh ON fh.family_id = f.family_id
+            JOIN resident r ON r.resident_id = fh.resident_id
+            JOIN address a ON a.address_id = f.address_id
             WHERE f.family_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $family_id);
@@ -12,7 +13,6 @@ function getFamilyDetails($conn, $family_id)
     $result = $stmt->get_result();
     return $result->fetch_assoc();
 }
-
 function getFamilyName($conn, $family_id)
 {
     if ($family_id <= 0) return 'N/A';
@@ -52,7 +52,8 @@ function getGender($conn, $family_id)
 
     $sql = "SELECT r.gender 
             FROM family f
-            JOIN resident r ON r.resident_id = f.family_head_id
+            JOIN family_head fh ON fh.family_id = f.family_id
+            JOIN resident r ON r.resident_id = fh.resident_id
             WHERE f.family_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $family_id);

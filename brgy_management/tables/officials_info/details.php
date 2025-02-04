@@ -1,10 +1,11 @@
 <?php
 function getOfficialsDetails($conn, $officials_id)
 {
-    $sql = "SELECT r.first_name, r.middle_name, r.last_name, r.gender, a.house_number, a.street, r.family_id, r.date_of_birth, o.position
+    $sql = "SELECT r.first_name, r.middle_name, r.last_name, r.gender, r.contact_number, a.house_number, a.street, r.family_id, r.date_of_birth, o.position
             FROM officials o
             JOIN resident r ON o.resident_id = r.resident_id
-            JOIN address a ON r.address_id = a.address_id
+            JOIN family f ON f.family_id = r.family_id
+            JOIN address a ON f.address_id = a.address_id
             WHERE o.officials_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $officials_id);

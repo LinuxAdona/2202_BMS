@@ -74,7 +74,7 @@
                         </a>
                     </div>
                 </form>
-                <a href="add_families.php">
+                <a href="add_family.php">
                     <button class="add-btn">
                         <i class='bx bx-folder-plus'></i>
                         <p>Add Family</p>
@@ -92,8 +92,6 @@
                 </thead>
                 <tbody>
                     <?php include "../brgy_management/tables/families_info/family_table.php"; ?>
-                </tbody>
-            </table>
         </div>
 
         <footer>

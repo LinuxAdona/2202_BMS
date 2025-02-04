@@ -93,6 +93,12 @@
                     <p><?php echo getFamilyHead($conn, $resident['family_id'] ?? 0) ?></p>
 
                     <div class="info-bx">
+                        <i class='bx bxs-contact'></i>
+                        <h4>Phone Number</h4>
+                    </div>
+                    <p><?php echo $resident['contact_number'] ?? "N/A"; ?></p>
+
+                    <div class="info-bx">
                         <i class='bx bxs-building-house'></i>
                         <h4>Address</h4>
                     </div>

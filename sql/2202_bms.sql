@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2025 at 12:57 PM
+-- Generation Time: Feb 04, 2025 at 09:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -176,10 +176,10 @@ INSERT INTO `relationships` (`relationship_id`, `family_id`, `father_id`, `mothe
 (9, 3, NULL, NULL, 9),
 (10, 4, 10, NULL, NULL),
 (11, 4, NULL, 11, NULL),
-(12, 4, NULL, NULL, 11),
+(12, 4, NULL, NULL, 12),
 (13, 5, 13, NULL, NULL),
 (14, 5, NULL, 14, NULL),
-(15, 5, NULL, NULL, 14),
+(15, 5, NULL, NULL, 15),
 (16, 26, 56, NULL, NULL),
 (17, 26, NULL, 57, NULL),
 (18, 26, NULL, NULL, 58),
@@ -214,6 +214,7 @@ CREATE TABLE `resident` (
   `last_name` varchar(50) DEFAULT NULL,
   `gender` enum('Male','Female') DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
+  `contact_number` varchar(11) NOT NULL,
   `address_id` int(11) DEFAULT NULL,
   `family_head` tinyint(1) DEFAULT NULL,
   `family_id` int(11) DEFAULT NULL
@@ -223,42 +224,42 @@ CREATE TABLE `resident` (
 -- Dumping data for table `resident`
 --
 
-INSERT INTO `resident` (`resident_id`, `first_name`, `middle_name`, `last_name`, `gender`, `date_of_birth`, `address_id`, `family_head`, `family_id`) VALUES
-(1, 'Juan', 'Manuel', 'Dela Cruz', 'Male', '1980-06-15', 1, 1, 1),
-(2, 'Maria', 'Rosales', 'Dela Cruz', 'Female', '1982-03-20', 1, 0, 1),
-(3, 'Carlos', 'Juan', 'Dela Cruz', 'Male', '2005-08-11', 1, 0, 1),
-(4, 'Pedro', 'Gabriel', 'Santos', 'Male', '1985-01-22', 2, 1, 2),
-(5, 'Ana', 'Maria', 'Santos', 'Female', '1987-11-18', 2, 0, 2),
-(6, 'Luis', 'Fernando', 'Santos', 'Male', '2010-05-09', 2, 0, 2),
-(7, 'Ricardo', 'Felipe', 'Gonzales', 'Male', '1978-02-03', 3, 1, 3),
-(8, 'Elena', 'Sofia', 'Gonzales', 'Female', '1980-07-25', 3, 0, 3),
-(9, 'Javier', 'Eduardo', 'Gonzales', 'Male', '2008-09-16', 3, 0, 3),
-(10, 'Antonio', 'Carlos', 'Lopez', 'Male', '1990-01-30', 4, 1, 4),
-(11, 'Gloria', 'Patricia', 'Lopez', 'Female', '1992-06-12', 4, 0, 4),
-(12, 'Adriana', 'Lucia', 'Lopez', 'Female', '2012-11-05', 4, 0, 4),
-(13, 'Eduardo', 'Manuel', 'Reyes', 'Male', '1975-10-16', 5, 1, 5),
-(14, 'Clara', 'Isabel', 'Reyes', 'Female', '1980-03-10', 5, 0, 5),
-(15, 'Sofia', 'Teresa', 'Reyes', 'Female', '2011-02-14', 5, 0, 5),
-(56, 'Mario', 'Luis', 'Torres', 'Male', '1970-01-05', 1, 1, 26),
-(57, 'Carla', 'Ann', 'Torres', 'Female', '1972-05-14', 1, 0, 26),
-(58, 'Diego', 'Martin', 'Torres', 'Male', '2000-07-23', 1, 0, 26),
-(59, 'Samantha', 'Marie', 'Torres', 'Female', '2003-09-12', 1, 0, 26),
-(60, 'Roberto', 'Felix', 'Torres', 'Male', '1975-03-30', 1, 1, 27),
-(61, 'Angela', 'Grace', 'Torres', 'Female', '1978-11-25', 1, 0, 27),
-(62, 'Paul', 'James', 'Torres', 'Male', '2005-06-18', 1, 0, 27),
-(63, 'Marian', 'Joy', 'Torres', 'Female', '2008-10-09', 1, 0, 27),
-(64, 'Daniel', 'Victor', 'Mendoza', 'Male', '1968-08-15', 2, 1, 28),
-(65, 'Lucia', 'Veronica', 'Mendoza', 'Female', '1970-12-22', 2, 0, 28),
-(66, 'Adrian', 'Samuel', 'Mendoza', 'Male', '1995-04-17', 2, 0, 28),
-(67, 'Jasmine', 'Elise', 'Mendoza', 'Female', '1999-07-25', 2, 0, 28),
-(68, 'Carlos', 'Enrique', 'Mendoza', 'Male', '1973-09-19', 2, 1, 29),
-(69, 'Elena', 'Patricia', 'Mendoza', 'Female', '1975-05-10', 2, 0, 29),
-(70, 'Fernando', 'Luis', 'Mendoza', 'Male', '2001-01-29', 2, 0, 29),
-(71, 'Maria', 'Sophia', 'Mendoza', 'Female', '2003-08-15', 2, 0, 29),
-(72, 'Francisco', 'Leon', 'Castro', 'Male', '1980-02-25', 3, 1, 30),
-(73, 'Teresa', 'Camille', 'Castro', 'Female', '1982-06-18', 3, 0, 30),
-(74, 'Miguel', 'Joseph', 'Castro', 'Male', '2006-11-03', 3, 0, 30),
-(75, 'Sofia', 'Isabel', 'Castro', 'Female', '2009-03-22', 3, 0, 30);
+INSERT INTO `resident` (`resident_id`, `first_name`, `middle_name`, `last_name`, `gender`, `date_of_birth`, `contact_number`, `address_id`, `family_head`, `family_id`) VALUES
+(1, 'Juan', 'Manuel', 'Dela Cruz', 'Male', '1980-06-15', '09000000001', 1, 1, 1),
+(2, 'Maria', 'Rosales', 'Dela Cruz', 'Female', '1982-03-20', '09000000002', 1, 0, 1),
+(3, 'Carlos', 'Juan', 'Dela Cruz', 'Male', '2005-08-11', '09000000003', 1, 0, 1),
+(4, 'Pedro', 'Gabriel', 'Santos', 'Male', '1985-01-22', '09000000004', 2, 1, 2),
+(5, 'Ana', 'Maria', 'Santos', 'Female', '1987-11-18', '09000000005', 2, 0, 2),
+(6, 'Luis', 'Fernando', 'Santos', 'Male', '2010-05-09', '09000000006', 2, 0, 2),
+(7, 'Ricardo', 'Felipe', 'Gonzales', 'Male', '1978-02-03', '09000000007', 3, 1, 3),
+(8, 'Elena', 'Sofia', 'Gonzales', 'Female', '1980-07-25', '09000000008', 3, 0, 3),
+(9, 'Javier', 'Eduardo', 'Gonzales', 'Male', '2008-09-16', '09000000009', 3, 0, 3),
+(10, 'Antonio', 'Carlos', 'Lopez', 'Male', '1990-01-30', '09000000010', 4, 1, 4),
+(11, 'Gloria', 'Patricia', 'Lopez', 'Female', '1992-06-12', '09000000011', 4, 0, 4),
+(12, 'Adriana', 'Lucia', 'Lopez', 'Female', '2012-11-05', '09000000012', 4, 0, 4),
+(13, 'Eduardo', 'Manuel', 'Reyes', 'Male', '1975-10-16', '09000000013', 5, 1, 5),
+(14, 'Clara', 'Isabel', 'Reyes', 'Female', '1980-03-10', '09000000014', 5, 0, 5),
+(15, 'Sofia', 'Teresa', 'Reyes', 'Female', '2011-02-14', '09000000015', 5, 0, 5),
+(56, 'Mario', 'Luis', 'Torres', 'Male', '1970-01-05', '09000000056', 1, 1, 26),
+(57, 'Carla', 'Ann', 'Torres', 'Female', '1972-05-14', '09000000057', 1, 0, 26),
+(58, 'Diego', 'Martin', 'Torres', 'Male', '2000-07-23', '09000000058', 1, 0, 26),
+(59, 'Samantha', 'Marie', 'Torres', 'Female', '2003-09-12', '09000000059', 1, 0, 26),
+(60, 'Roberto', 'Felix', 'Torres', 'Male', '1975-03-30', '09000000060', 1, 1, 27),
+(61, 'Angela', 'Grace', 'Torres', 'Female', '1978-11-25', '09000000061', 1, 0, 27),
+(62, 'Paul', 'James', 'Torres', 'Male', '2005-06-18', '09000000062', 1, 0, 27),
+(63, 'Marian', 'Joy', 'Torres', 'Female', '2008-10-09', '09000000063', 1, 0, 27),
+(64, 'Daniel', 'Victor', 'Mendoza', 'Male', '1968-08-15', '09000000064', 2, 1, 28),
+(65, 'Lucia', 'Veronica', 'Mendoza', 'Female', '1970-12-22', '09000000065', 2, 0, 28),
+(66, 'Adrian', 'Samuel', 'Mendoza', 'Male', '1995-04-17', '09000000066', 2, 0, 28),
+(67, 'Jasmine', 'Elise', 'Mendoza', 'Female', '1999-07-25', '09000000067', 2, 0, 28),
+(68, 'Carlos', 'Enrique', 'Mendoza', 'Male', '1973-09-19', '09000000068', 2, 1, 29),
+(69, 'Elena', 'Patricia', 'Mendoza', 'Female', '1975-05-10', '09000000069', 2, 0, 29),
+(70, 'Fernando', 'Luis', 'Mendoza', 'Male', '2001-01-29', '09000000070', 2, 0, 29),
+(71, 'Maria', 'Sophia', 'Mendoza', 'Female', '2003-08-15', '09000000071', 2, 0, 29),
+(72, 'Francisco', 'Leon', 'Castro', 'Male', '1980-02-25', '09000000072', 3, 1, 30),
+(73, 'Teresa', 'Camille', 'Castro', 'Female', '1982-06-18', '09000000073', 3, 0, 30),
+(74, 'Miguel', 'Joseph', 'Castro', 'Male', '2006-11-03', '09000000074', 3, 0, 30),
+(75, 'Sofia', 'Isabel', 'Castro', 'Female', '2009-03-22', '09000000075', 3, 0, 30);
 
 --
 -- Indexes for dumped tables
@@ -355,7 +356,7 @@ ALTER TABLE `officials`
 -- AUTO_INCREMENT for table `relationships`
 --
 ALTER TABLE `relationships`
-  MODIFY `relationship_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `relationship_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `resident`

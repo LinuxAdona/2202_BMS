@@ -5,7 +5,8 @@ function loadHouseDetails($conn, $address_id)
     $sql = "SELECT f.family_id, f.family_name, a.house_number, r.first_name, r.middle_name, r.last_name, a.street
             FROM family f
             JOIN address a ON a.address_id = f.address_id
-            JOIN resident r ON r.resident_id = f.family_head_id
+            JOIN resident r ON r.family_id = f.family_id
+            JOIN family_head fh ON fh.resident_id = r.resident_id
             WHERE a.address_id = ?";
 
     $stmt = $conn->prepare($sql);

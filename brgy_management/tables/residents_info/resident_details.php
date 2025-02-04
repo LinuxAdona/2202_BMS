@@ -1,9 +1,10 @@
 <?php
 function getResidentDetails($conn, $resident_id)
 {
-    $sql = "SELECT r.first_name, r.middle_name, r.last_name, r.gender, a.house_number, a.street, r.family_id, r.date_of_birth
+    $sql = "SELECT r.first_name, r.middle_name, r.last_name, r.gender, r.contact_number, a.house_number, a.street, r.family_id, r.date_of_birth
             FROM resident r
-            JOIN address a ON r.address_id = a.address_id
+            JOIN family f ON r.family_id = f.family_id
+            JOIN address a ON f.address_id = a.address_id
             WHERE r.resident_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $resident_id);

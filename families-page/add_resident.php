@@ -1,6 +1,4 @@
 <?php include "../brgy_management/db.php"; ?>
-<?php include "../brgy_management/tables/families_info/details.php"; ?>
-<?php include "../brgy_management/tables/families_info/family.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,17 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barangay Management System | Linux Adona | BSIT 2202</title>
-    <link rel="stylesheet" href="../styles/families/info.css">
+    <link rel="stylesheet" href="../styles/families/add_resident.css">
     <link rel="stylesheet" href="../styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-
-    <?php
-    $family_id = isset($_GET['id']) ? $_GET['id'] : 0;
-    $family = getFamilyDetails($conn, $family_id);
-    ?>
 
     <div class="sidebar">
         <div class="brgy-logo">
@@ -42,10 +35,7 @@
                     </li>
                     <li class="active">
                         <i class='bx bx-dots-vertical-rounded'></i>
-                        <?php
-                        $family_id = isset($_GET["id"]) ? $_GET["id"] : 0;
-                        echo "<a href='view_family.php?id=" . $family_id . "'>View Family</a>";
-                        ?>
+                        <a href='add_resident.php'>Add Member</a>
                     </li>
                     <li>
                         <a href="../officials-page/officials.php">Officials</a>
@@ -68,72 +58,64 @@
 
     <div class="main">
         <header>
-            <h2>Family Info</h2>
+            <h2>Add Family Member</h2>
         </header>
 
         <div class="content">
-            <div class="left-bx">
-                <div class="resident-bx">
-                    <h2>
-                        <?php echo $family ? $family['first_name'] . " " . $family['middle_name'] . " " . $family['last_name'] : "Resident not found."; ?>
-                    </h2>
-                    <p>Head of the Family</p>
+            <form action="process_add_resident.php" method="POST">
+                <h3>Head of Family Details:</h3>
+                <div class="details">
+                    <div class="other-details">
+                        <div class="input-bx">
+                            <label for="first_name">First Name:</label>
+                            <input type="text" id="first_name" name="first_name" required>
+                        </div>
+
+                        <div class="input-bx">
+                            <label for="middle_name">Middle Name:</label>
+                            <input type="text" id="middle_name" name="middle_name">
+                        </div>
+
+                        <div class="input-bx">
+                            <label for="last_name">Last Name:</label>
+                            <input type="text" id="last_name" name="last_name" required>
+                        </div>
+                    </div>
+                    <div class="other-details">
+                        <div class="input-bx">
+                            <label for="contact_number">Contact Number:</label>
+                            <input type="text" id="contact_number" name="contact_number" required>
+                        </div>
+                        <div class="input-bx">
+                            <label for="gender">Gender:</label>
+                            <select id="gender" name="gender" required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="input-bx">
+                            <label for="date_of_birth">Date of Birth:</label>
+                            <input type="date" id="date_of_birth" name="date_of_birth" required>
+                        </div>
+
+                        <div class="input-bx">
+                            <label for="relationship">Relationship to Head:</label>
+                            <select id="relationship" name="relationship" required>
+                                <option value="select">Select</option>
+                                <option value="mother">Mother</option>
+                                <option value="child">Child</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="resident-info-bx">
+                <input type="hidden" name="family_id" value="<?php echo $_GET['family_id']; ?>">
 
-                    <div class="info-bx">
-                        <?php echo getGender($conn, $family_id ?? 0); ?>
-                        <h4><?php echo $family['gender'] ?? "N/A"; ?></h4>
-                    </div>
-
-                    <div class="info-bx">
-                        <i class='bx bxs-face'></i>
-                        <h4>Family Head</h4>
-                    </div>
-                    <p><?php echo getFamilyHead($conn, $family['family_id'] ?? 0) ?></p>
-
-                    <div class="info-bx">
-                        <i class='bx bxs-contact'></i>
-                        <h4>Phone Number</h4>
-                    </div>
-                    <p><?php echo $family['contact_number'] ?? "N/A"; ?></p>
-
-                    <div class="info-bx">
-                        <i class='bx bxs-building-house'></i>
-                        <h4>Address</h4>
-                    </div>
-                    <p><?php echo isset($family) ? $family['house_number'] . " " . $family['street'] : 'N/A'; ?></p>
-
-                    <div class="info-bx">
-                        <i class='bx bxs-calendar'></i>
-                        <h4>Date of Birth</h4>
-                    </div>
-                    <p><?php echo isset($family['date_of_birth']) ? date("F j, Y", strtotime($family['date_of_birth'])) : 'N/A'; ?></p>
-                </div>
-            </div>
-
-            <div class="right-bx">
-                <h2><?php echo getFamilyName($conn, $family['family_id'] ?? 0); ?> Family</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Relationship</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php echo loadFamilyMembers($conn, $family_id ?? 0, $family['resident_id']); ?>
-                    </tbody>
-                </table>
-                <a href="add_resident.php?family_id=<?php echo $family_id; ?>">
-                    <button class="add-btn">
-                        <i class='bx bx-folder-plus'></i>
-                        <p>Add Member</p>
-                    </button>
-                </a>
-            </div>
+                <button type="submit">Add Resident</button>
+            </form>
         </div>
+
+        <script src="add_resident.js"></script>
 
         <footer>
             <div class="bsu-logo">
@@ -143,8 +125,6 @@
             <p>Created by Linux Adona from BSIT-2202</p>
         </footer>
     </div>
-
-    <script src="../script.js"></script>
 
 </body>
 

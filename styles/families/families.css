@@ -1,7 +1,34 @@
 .content {
+    display: flex;
+    flex-direction: column;
     margin: 0 30px;
+    height: calc(100vh - 131px);
 }
 
+.pagination {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: max-content;
+    margin-left: auto;
+}
+
+.pagination a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #2980b9;
+    padding: 5px 10px;
+    border: 1px solid #b4b4b4;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+    background-color: #3498db;
+}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -112,6 +139,14 @@ form button:hover {
     text-decoration: none;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.add-btn i {
+    font-size: 20px;
+}
+
+.add-btn:hover {
+    background-color: #14e661;
 }
 
 .actions {

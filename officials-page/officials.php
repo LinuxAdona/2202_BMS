@@ -87,8 +87,6 @@
                 </thead>
                 <tbody>
                     <?php include '../brgy_management/tables/officials_info/officials_table.php'; ?>
-                </tbody>
-            </table>
         </div>
 
         <footer>

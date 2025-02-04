@@ -1,23 +1,32 @@
 <?php
 $search = isset($_GET['search']) ? $_GET['search'] : '';
-$sql = "SELECT f.family_id, f.family_name, a.house_number, r.first_name, r.middle_name, r.last_name, a.street
-        FROM family f
-        JOIN address a ON a.address_id = f.address_id
-        JOIN resident r ON r.resident_id = f.family_head_id
-        WHERE f.family_name LIKE '%$search%' OR a.house_number LIKE '%$search%'
-        OR r.first_name LIKE '%$search%' OR r.last_name LIKE '%$search%'
-        OR a.street LIKE '%$search%'
-        ORDER BY r.first_name, r.last_name ASC";
-$result = $conn->query($sql);
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$limit = 8;
+$offset = ($page - 1) * $limit;
 
-$counter = 0;
+$totalFamiliesQuery = "SELECT COUNT(*) as count FROM family f
+                        JOIN family_head fh ON fh.family_id = f.family_id
+                        JOIN resident r ON r.resident_id = fh.resident_id
+                        WHERE f.family_name LIKE '%$search%' OR r.first_name LIKE '%$search%' OR r.last_name LIKE '%$search%'";
+$totalFamiliesResult = $conn->query($totalFamiliesQuery);
+$totalFamilies = $totalFamiliesResult->fetch_assoc()['count'];
+$totalPages = ceil($totalFamilies / $limit);
+
+$sql = "SELECT f.family_id, f.family_name, r.first_name, r.middle_name, r.last_name
+        FROM family f
+        JOIN family_head fh ON fh.family_id = f.family_id
+        JOIN resident r ON r.resident_id = fh.resident_id
+        WHERE f.family_name LIKE '%$search%' OR r.first_name LIKE '%$search%' OR r.last_name LIKE '%$search%'
+        ORDER BY r.first_name, r.last_name ASC
+        LIMIT $limit OFFSET $offset";
+
+$result = $conn->query($sql);
+$counter = $offset + 1;
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $counter++;
-
         $to_string = "<tr>
-                        <td>" . $counter . "</td>
+                        <td>" . $counter++ . "</td>
                         <td>" . $row['first_name'] . " " . substr($row['middle_name'], 0, 1) . ". " . $row['last_name'] . "</td>
                         <td>" . $row['family_name'] . "</td>
                         <td>
@@ -42,3 +51,14 @@ if ($result->num_rows > 0) {
 } else {
     echo "<tr><td colspan='4'>No families found.</td></tr>";
 }
+
+echo "</tbody></table>";
+echo "<div class='pagination'>";
+if ($page > 1) {
+    echo "<a href='?page=" . ($page - 1) . "&search=" . urlencode($search) . "'><i class='bx bx-left-arrow-alt' ></i><p>Prev</p></a>";
+}
+echo " Page " . $page . " of " . $totalPages . " "; // Display current page number
+if ($page < $totalPages) {
+    echo "<a href='?page=" . ($page + 1) . "&search=" . urlencode($search) . "'><p>Next</p><i class='bx bx-right-arrow-alt'></i></a>";
+}
+echo "</div>";
