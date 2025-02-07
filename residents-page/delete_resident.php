@@ -4,6 +4,13 @@ include "../brgy_management/db.php";
 if (isset($_POST['id'])) {
     $resident_id = $_POST['id'];
 
+    // JavaScript confirmation dialog
+    echo '<script>
+        if (!confirm("Are you sure you want to delete this resident?")) {
+            window.location.href = "residents.php"; // Redirect if not confirmed
+        }
+    </script>';
+
     // Retrieve the family_id for the resident
     $resident_query = $conn->query("SELECT family_id FROM resident WHERE resident_id = '$resident_id'");
     $resident = $resident_query->fetch_assoc();

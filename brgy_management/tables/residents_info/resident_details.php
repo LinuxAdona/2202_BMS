@@ -1,16 +1,32 @@
 <?php
 function getResidentDetails($conn, $resident_id)
 {
-    $sql = "SELECT r.first_name, r.middle_name, r.last_name, r.gender, r.contact_number, a.house_number, a.street, r.family_id, r.date_of_birth
+    $sql = "SELECT r.first_name, r.middle_name, r.last_name, r.gender, r.contact_number, r.family_id, r.date_of_birth
             FROM resident r
             JOIN family f ON r.family_id = f.family_id
-            JOIN address a ON f.address_id = a.address_id
             WHERE r.resident_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $resident_id);
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_assoc();
+}
+
+function getAddress($conn, $resident_id)
+{
+    $sql = "SELECT a.house_number, a.street
+                   FROM address a
+                   JOIN family f ON f.address_id = a.address_id
+                   JOIN resident r ON r.family_id = f.family_id
+                   WHERE r.resident_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $resident_id);
+    $stmt->execute();
+    if ($result = $stmt->get_result()) {
+        return $result->fetch_assoc();
+    } else {
+        return 'N/A';
+    }
 }
 
 function getFamilyName($conn, $family_id)

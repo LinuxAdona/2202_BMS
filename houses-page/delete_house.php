@@ -4,6 +4,13 @@ include "../brgy_management/db.php";
 if (isset($_POST['id'])) {
     $address_id = $_POST['id'];
 
+    // JavaScript confirmation dialog
+    echo '<script>
+        if (!confirm("Are you sure you want to delete this house?")) {
+            window.location.href = "houses.php"; // Redirect if not confirmed
+        }
+    </script>';
+
     $familyCountQuery = "SELECT COUNT(*) as family_count FROM family WHERE address_id = ?";
     $stmt = $conn->prepare($familyCountQuery);
     $stmt->bind_param("i", $address_id);

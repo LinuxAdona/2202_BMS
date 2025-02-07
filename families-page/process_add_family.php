@@ -29,9 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_family_head->bind_param("ii", $resident_id, $family_id);
 
             if ($stmt_family_head->execute()) {
-                $stmt_relationship = $conn->prepare("INSERT INTO relationships (family_id, father_id, mother_id, child_id) VALUES (?, ?, NULL, NULL)");
-                $stmt_relationship->bind_param("ii", $family_id, $resident_id);
-                $stmt_relationship->execute();
+                if ($gender == 'Male') {
+                    $stmt_relationship = $conn->prepare("INSERT INTO relationships (family_id, father_id, mother_id, child_id) VALUES (?, ?, NULL, NULL)");
+                    $stmt_relationship->bind_param("ii", $family_id, $resident_id);
+                    $stmt_relationship->execute();
+                } else if ($gender == 'Female') {
+                    $stmt_relationship = $conn->prepare("INSERT INTO relationships (family_id, father_id, mother_id, child_id) VALUES (?, NULL, ?, NULL)");
+                    $stmt_relationship->bind_param("ii", $family_id, $resident_id);
+                    $stmt_relationship->execute();
+                }
 
                 $response['status'] = 'success';
                 $response['message'] = 'Family and head of family added successfully.';

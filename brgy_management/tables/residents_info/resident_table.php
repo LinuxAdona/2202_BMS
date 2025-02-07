@@ -5,20 +5,17 @@ $limit = 8;
 $offset = ($page - 1) * $limit;
 
 $totalResidentsQuery = "SELECT COUNT(*) as count FROM resident r
-                        JOIN family f ON r.family_id = f.family_id
-                        JOIN address a ON a.address_id = f.address_id
                         WHERE r.first_name LIKE '%$search%' OR r.last_name LIKE '%$search%' 
-                        OR a.house_number LIKE '%$search%' OR a.street LIKE '%$search%' OR r.gender LIKE '%$search%'";
+                        OR r.gender LIKE '%$search%'";
 $totalResidentsResult = $conn->query($totalResidentsQuery);
 $totalResidents = $totalResidentsResult->fetch_assoc()['count'];
 $totalPages = ceil($totalResidents / $limit);
 
-$sql = "SELECT r.resident_id, r.first_name, r.middle_name, r.last_name, r.gender, r.contact_number, a.house_number, a.street
+$sql = "SELECT r.resident_id, r.first_name, r.middle_name, r.last_name, r.gender
         FROM resident r
         JOIN family f ON r.family_id = f.family_id
-        JOIN address a ON a.address_id = f.address_id
         WHERE r.first_name LIKE '%$search%' OR r.last_name LIKE '%$search%' 
-        OR a.house_number LIKE '%$search%' OR a.street LIKE '%$search%' OR r.gender LIKE '%$search%'
+        OR r.gender LIKE '%$search%'
         ORDER BY r.first_name, r.last_name ASC
         LIMIT $limit OFFSET $offset";
 

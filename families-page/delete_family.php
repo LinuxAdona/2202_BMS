@@ -4,6 +4,13 @@ include "../brgy_management/db.php";
 if (isset($_POST['id'])) {
     $family_id = $_POST['id'];
 
+    // JavaScript confirmation dialog
+    echo '<script>
+        if (!confirm("Are you sure you want to delete this family?")) {
+            window.location.href = "families.php"; // Redirect if not confirmed
+        }
+    </script>';
+
     // Insert the family into deleted_families table
     $conn->query("INSERT INTO deleted_families (family_id, family_name, address_id) 
                   SELECT family_id, family_name, address_id FROM family WHERE family_id = " . $family_id);

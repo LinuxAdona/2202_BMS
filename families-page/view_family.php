@@ -19,6 +19,7 @@
     <?php
     $family_id = isset($_GET['id']) ? $_GET['id'] : 0;
     $family = getFamilyDetails($conn, $family_id);
+    $address = getAddress($conn, $family_id);
     ?>
 
     <div class="sidebar">
@@ -102,7 +103,7 @@
                         <i class='bx bxs-building-house'></i>
                         <h4>Address</h4>
                     </div>
-                    <p><?php echo isset($family) ? $family['house_number'] . " " . $family['street'] : 'N/A'; ?></p>
+                    <p><?php echo isset($address['house_number']) ? $address['house_number'] . " " . $address['street'] : "N/A"; ?></p>
 
                     <div class="info-bx">
                         <i class='bx bxs-calendar'></i>
